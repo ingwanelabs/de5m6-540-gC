@@ -8,11 +8,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'etl-pipeline'))
 from etl_pipe import insert_data, upsert_data
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'data-validation'))
-from validate_recordCount import validate_record_count
+from validate_recordCount import validate_recordCount
 from validate_completness import validate_completeness
-from validate_riskDistribution import validate_risk_distribution
-from validate_geoDistribution import validate_geo_distribution
-from validate_auditTrailVerification import validate_audit_trail
+from validate_riskDistribution import validate_riskDistribution
+from validate_geoDistribution import validate_geoDistribution
+from validate_auditTrailVerification import validate_auditTrailVerification
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'output-scripts'))
 from report_customer_demographics import generate_customer_demographics_report
@@ -86,14 +86,14 @@ def show_file_options(file_path):
 
 
 def run_validation(file_path):
-    print(f"\n~ Running Validation on {file_path.name} ~")
+    print(f"\n~ Running Database Validation ~")
     
     validations = {
-        1: ('Record Count', validate_record_count),
+        1: ('Record Count', validate_recordCount),
         2: ('Completeness', validate_completeness),
-        3: ('Risk Distribution', validate_risk_distribution),
-        4: ('Geographic Distribution', validate_geo_distribution),
-        5: ('Audit Trail Verification', validate_audit_trail)
+        3: ('Risk Distribution', validate_riskDistribution),
+        4: ('Geographic Distribution', validate_geoDistribution),
+        5: ('Audit Trail Verification', validate_auditTrailVerification)
     }
 
     print("\nAvailable validations:")
@@ -110,12 +110,14 @@ def run_validation(file_path):
             print("\nRunning all validations...")
             for name, func in validations.values():
                 print(f"\n{'='*50}")
-                func(str(file_path))
+                print(f"{name}:")
+                func()
             print(f"\n{'='*50}")
             print("All validations completed")
         elif choice in validations:
             name, func = validations[choice]
-            func(str(file_path))
+            print(f"\n{name}:")
+            func()
         else:
             print("Invalid selection")
     except ValueError:
