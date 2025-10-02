@@ -5,11 +5,13 @@ from sqlalchemy import create_engine
 
 def validate_riskDistribution():
     # Database connection configuration
-    SERVER = 'localhost'  # Your SQL Server instance
-    DATABASE = 'customer_warehouse'  # We'll create this database
+    SERVER = 'localhost'
+    DATABASE = 'customer_warehouse'
 
-    # Connect to our customer warehouse database
     warehouse_connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SERVER};DATABASE={DATABASE};Trusted_Connection=yes;'
+    
+    params = urllib.parse.quote_plus(warehouse_connection_string)
+    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
 
     risk_query = """
         SELECT 
@@ -25,3 +27,7 @@ def validate_riskDistribution():
     print(f"Risk Distribution:")
     for _, row in risk_df.iterrows():
         print(f"   {row['calculated_risk']} Risk: {row['customer_count']} customers ({row['percentage']}%)")
+
+
+if __name__ == "__main__":
+    validate_riskDistribution()
