@@ -169,11 +169,7 @@ python data-validation/validate_auditTrailVerification.py
 Run the test suite to verify functionality:
 
 ```bash
-# Run all tests
-pytest tests/ -v
 
-# Run with coverage report
-pytest tests/ --cov=. --cov-report=html
 ```
 
 ## Development Workflow
