@@ -27,16 +27,13 @@ load_dotenv()
 def get_connection_string():
     server = os.getenv('DB_SERVER')
     database = os.getenv('DB_NAME')
-    username = os.getenv('DB_USER')
-    password = os.getenv('DB_PASSWORD')
+
     driver = os.getenv('DB_DRIVER', 'ODBC Driver 17 for SQL Server')
     
     return (
         f"DRIVER={{{driver}}};"
         f"SERVER={server};"
         f"DATABASE={database};"
-        f"UID={username};"
-        f"PWD={password}"
     )
 
 
@@ -73,9 +70,10 @@ def select_file(files):
 
 def show_menu():
     print("\n~Main Menu~")
-    print("1. Select data file")
-    print("2. Generate reports")
-    print("3. Exit")
+    print("1. Setup database")
+    print("2. Select data file")
+    print("3. Generate reports")
+    print("4. Exit")
     print()
 
 
@@ -156,6 +154,37 @@ def load_to_database(file_path):
         print(f"Error: {e}")
 
 
+def setup_database():
+    print("\n~ Running Database Setup ~")
+    orchestration_script = Path(__file__).parent / 'database-setup' / 'orchestration.py'
+    
+    if not orchestration_script.exists():
+        print(f"Error: orchestration.py not found at {orchestration_script}")
+        return
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, str(orchestration_script)],
+            capture_output=True,
+            text=True,
+            cwd=Path(__file__).parent
+        )
+        
+        print(result.stdout)
+        
+        if result.stderr:
+            print("Errors:")
+            print(result.stderr)
+        
+        if result.returncode == 0:
+            print("\n~ Database setup completed successfully ~")
+        else:
+            print(f"\n~ Database setup failed with exit code {result.returncode} ~")
+            
+    except Exception as e:
+        print(f"Error running orchestration script: {e}")
+
+
 def generate_reports():
     print("\n~ Generate Business Intelligence Reports ~")
     
@@ -202,6 +231,8 @@ def main():
         try:
             choice = input("Select option: ")
             if choice == '1':
+                setup_database()
+            elif choice == '2':
                 files = list_data_files()
                 if files:
                     display_files(files)
@@ -222,9 +253,9 @@ def main():
                                 print("Invalid option")
                 else:
                     print("No CSV files found in data folder")
-            elif choice == '2':
-                generate_reports()
             elif choice == '3':
+                generate_reports()
+            elif choice == '4':
                 print("\nExiting...")
                 break
             else:

@@ -18,8 +18,6 @@ def get_connection_string():
         f"DRIVER={{{driver}}};"
         f"SERVER={server};"
         f"DATABASE={database};"
-        f"UID={username};"
-        f"PWD={password}"
     )
 
 
