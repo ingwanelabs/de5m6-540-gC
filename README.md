@@ -65,4 +65,11 @@ This project provides a self-contained ETL + validation pipeline for ingesting, 
     python etl-pipeline/etl_pipe.py
     ```
 
+5. **Run main**
+    Choose options for ETL
+    ```bash
+    python main.py
+    ```
+   
+
     It reads files from `data/`, applies enrichment
