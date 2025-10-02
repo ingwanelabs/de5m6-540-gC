@@ -1,5 +1,5 @@
 -- warehouse_tables.sql
--- Script to (re)create warehouse tables and indexes in customer_warehouse
+
 
 USE customer_warehouse;
 PRINT '=== CREATING DATA WAREHOUSE TABLES ===';

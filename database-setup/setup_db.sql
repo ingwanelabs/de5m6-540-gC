@@ -14,7 +14,7 @@ BEGIN
 END
 ELSE
 BEGIN
-    PRINT 'ℹ️ Database customer_warehouse already exists';
+    PRINT 'Database customer_warehouse already exists';
 END;
 
 PRINT 'Database setup complete';
