@@ -86,7 +86,7 @@ def show_file_options(file_path):
 
 
 def run_validation(file_path):
-    print(f"\n~ Running Validation on {file_path.name} ~")
+    print(f"\n~ Running Database Validation ~")
     
     validations = {
         1: ('Record Count', validate_recordCount),
@@ -110,12 +110,14 @@ def run_validation(file_path):
             print("\nRunning all validations...")
             for name, func in validations.values():
                 print(f"\n{'='*50}")
-                func(str(file_path))
+                print(f"{name}:")
+                func()
             print(f"\n{'='*50}")
             print("All validations completed")
         elif choice in validations:
             name, func = validations[choice]
-            func(str(file_path))
+            print(f"\n{name}:")
+            func()
         else:
             print("Invalid selection")
     except ValueError:

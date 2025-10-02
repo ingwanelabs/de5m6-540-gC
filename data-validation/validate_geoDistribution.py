@@ -4,7 +4,6 @@ import urllib
 from sqlalchemy import create_engine
 
 def validate_geoDistribution():
-    # Database connection configuration
     SERVER = 'localhost'
     DATABASE = 'customer_warehouse'
 
