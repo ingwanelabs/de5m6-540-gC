@@ -1,1 +1,7 @@
-444
+customer_id,first_name,last_name,email,phone,postcode,region,country,district,longitude,latitude,geo_enriched,company,company_size,industry,annual_revenue,is_business,calculated_risk,risk_score_numeric,risk_factors,status,processed_date,data_source,enrichment_status
+1001,John,Smith,john@email.com,01234567890,SW1A 1AA,London,England,Westminster,-0.1419,51.5014,1,,Individual,Personal,N/A,0,Low,0,Standard profile,active,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
+1002,Jane,Doe,jane@email.com,01987654321,M1 1AF,North West,England,Manchester,-2.2426,53.4794,1,,Individual,Personal,N/A,0,Low,0,Standard profile,active,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
+1003,Mike,Johnson,mike@techcorp.com,01555123456,B1 1BB,West Midlands,England,Birmingham,-1.8904,52.4796,1,TechCorp Ltd,Medium (50-250 employees),Technology,£2M-£10M,1,Medium,2,High-risk region,active,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
+1004,Sarah,Wilson,sarah@retailplus.com,01777888999,LS1 2AJ,Yorkshire and The Humber,England,Leeds,-1.5491,53.7997,1,Retail Plus,Large (250+ employees),Retail,£10M+,1,High,5,Account suspended; High-risk region,suspended,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
+1005,Bob,Brown,bob@email.com,01111222333,NE1 3NG,North East,England,Newcastle,-1.6131,54.9738,1,,Individual,Personal,N/A,0,Low,0,Standard profile,active,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
+1006,Alice,Cooper,alice@freelance.com,01444555666,CF10 2HH,Wales,Wales,Cardiff,-3.1791,51.4816,1,Freelance Design,Micro (1-10 employees),Creative Services,£0-£100K,1,Medium,1,Small business,active,2025-10-02 12:49:23,ETL_Pipeline_v1,Fully Enriched
